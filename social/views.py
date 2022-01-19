@@ -1,3 +1,4 @@
+from django.views import View
 from django.views.generic import ListView
 from django.shortcuts import render
 from social import models
@@ -16,6 +17,13 @@ class Wall(LoginRequiredMixin, ListView):
           & ~Q(user = self.request.user)
             )
 
+class Home(LoginRequiredMixin , ListView):
+    context_object_name = 'posts'
+    template_name = 'social/home.html'
+    login_url = 'auth/login'
+    def get_queryset(self):
+        return models.Post.objects.filter(user = self.request.user.pk
+        )
 
 
 

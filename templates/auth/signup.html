@@ -2,5 +2,12 @@
 
 {% block body %}
 <h3>SignUp</h3>
-{{form}}
+<form action="" method="post">
+    {% csrf_token %}
+    
+    {{form}}
+    <br>
+    <button type="submit">Signup</button>
+</form>
+
 {% endblock %}

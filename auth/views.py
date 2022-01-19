@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView , LogoutView
 from django.views import View
-from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.forms import UserCreationForm  # we are not using basic one we are updating that 
+from auth import forms
 # Create your views here.
 
 
@@ -17,7 +17,7 @@ class Logout(LogoutView):
 class Signup(View):
     def get(self , request  ):
         context = {
-            'form' :UserCreationForm
+            'form' :forms.Signupform()
         }
         return render(request , 'auth/signup.html' , context)
     

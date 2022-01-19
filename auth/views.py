@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView , LogoutView
+from django.views import View
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
+
+
 
 class Login(LoginView):
     template_name = 'auth/index.html'
@@ -8,4 +13,11 @@ class Login(LoginView):
 
 class Logout(LogoutView):
     pass 
+
+class Signup(View):
+    def get(self , request  ):
+        context = {
+            'form' :UserCreationForm
+        }
+        return render(request , 'auth/signup.html' , context)
     

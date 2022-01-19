@@ -14,7 +14,18 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return '{}_post{}_{}..'.format(self.user , self.pk , self.content[:10])
-    
+
+class Likes(models.Model):
+    post = models.ForeignKey('Post' ,on_delete=models.CASCADE)
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+
+class comment(models.Model):
+    post = models.ForeignKey('Post' ,on_delete=models.CASCADE)
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    content = models.CharField(max_length=1024 )
+
+
+
 class Friends(models.Model):
     person1 = models.ForeignKey(User , on_delete=models.CASCADE , related_name='person1')
     person2 = models.ForeignKey(User , on_delete=models.CASCADE , related_name='person2')

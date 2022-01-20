@@ -15,6 +15,20 @@
     </div>
     <div class="card-action">
       <a href="#">{{ post.likes_set.count }} Likes</a>
-      <a href="#">{{ post.comment_set.count }} Comments</a>
+      <a class="modal-trigger" href="#postmodal{{post.id}}">{{ post.comment_set.count }} Comments</a>
+    </div>
+  </div>
+
+  <div id=  "postmodal{{post.id}}" class="modal">
+    <div class="modal-content">
+      <h4>Comments</h4> 
+      <ul> 
+        {% for comment in post.comment %}
+       <li>
+         {{ comment.user.first_name }} - {{comment.content}}
+       </li> 
+
+          {% endfor %}
+      </ul>
     </div>
   </div>

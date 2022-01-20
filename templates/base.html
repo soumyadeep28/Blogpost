@@ -16,7 +16,7 @@
           <a href="/" class="brand-logo">Facebook</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             {% if user.is_authenticated %}
-                <li> hello {{ user.first_name }} {{ user.last_name }} </li>
+                <li> <a href="/home">hello , {{ user.first_name }} {{ user.last_name }} </a>   </li>
                 <li><a href="auth/logout">Logout</a></li>
             {% else %}
                 <li><a href="auth/login">Login</a></li>

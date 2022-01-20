@@ -2,15 +2,25 @@
 
 
 {% block body %}
+<h2 class="container">
+<h3>Home </h3>
+<div class="row">
+    <div class="col s12">
+        <ul>
+            {% for post in posts %}
+        
+             <li> 
+                 <div class="container">
+                    {% include 'social/component/post.html' %}
+                </div>
+             </li>
+        
+        
+            {% endfor%}
+        </ul>
+    </div>
+</div>
+</h2>
 
-<ul>
-    {% for post in posts %}
-
-     <li> {{ post}} --> {{ post.likes_set.count }} Likes | {{ post.comment_set.count }} comments
-     </li>
-
-
-    {% endfor%}
-</ul>
 
 {% endblock %}

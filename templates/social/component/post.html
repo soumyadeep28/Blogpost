@@ -13,4 +13,8 @@
             {{post.content}}
       </p>
     </div>
+    <div class="card-action">
+      <a href="#">{{ post.likes_set.count }} Likes</a>
+      <a href="#">{{ post.comment_set.count }} Comments</a>
+    </div>
   </div>

@@ -3,7 +3,13 @@
 
 {% block body %}
 <h3>Hall of fame</h3>
-{% for post in posts %}
-{{post}}
-{% endfor %}
+<div class="container">
+
+    {% for post in posts %}
+        
+        {% include 'social/component/post.html' %}
+    
+    {% endfor %}
+
+</div>
 {% endblock %}

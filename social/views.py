@@ -1,3 +1,4 @@
+from http.client import HTTPResponse
 from msilib.schema import Error
 from urllib.error import HTTPError
 from django.views import View
@@ -6,6 +7,8 @@ from django.shortcuts import render , redirect
 from social import models ,forms 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q 
+from django.views.generic.detail import SingleObjectMixin
+
 # Create your views here.
 class Wall(LoginRequiredMixin, ListView):
     #queryset = models.Post.objects.all()  #now we need to filter that
@@ -49,6 +52,17 @@ class Post(View):
     else:
       return redirect('/')
       
+
+class PostLike(  View):
+  model = models.Post
+
+  def post(self , request ,pk) :
+    post = self.model.objects.get(pk = pk )
+    models.Likes.objects.create(post= post , user = request.user )    
+    return HTTPResponse(code = 204)
+
+class PostComment(View):
+  pass 
 
 
 

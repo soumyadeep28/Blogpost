@@ -62,7 +62,21 @@ class PostLike(  View):
     return HTTPResponse(code = 204)
 
 class PostComment(View):
-  pass 
+  model = models.Post
+  form = forms.CommentPost
+  def post(self  , request , pk ):
+    post = self.model.objects.get(pk=pk)
+    form = self.form(request = 'POST')
+
+    if form.is_valid():
+      comment = form.save(commit=False)
+      comment.user = request.user 
+      comment.post = post 
+      comment.save()
+      return HTTPResponse(code = 204)
+
+
+    return HTTPResponse("Error")
 
 
 

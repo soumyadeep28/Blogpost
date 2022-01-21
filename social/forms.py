@@ -6,3 +6,10 @@ class FormPost(forms.ModelForm):
         model = models.Post
         fields = ['content' , 'image']
 
+
+class CommentPost(forms.ModelForm):
+
+    class Meta:
+        model = models.comment
+        fields = ['content']
+

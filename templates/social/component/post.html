@@ -19,16 +19,22 @@
     </div>
   </div>
 
-  <div id=  "postmodal{{post.id}}" class="modal">
+  <div id= "postmodal{{post.id}}" class="modal">
     <div class="modal-content">
       <h4>Comments</h4> 
       <ul> 
-        {% for comment in post.comment %}
-       <li>
-         {{ comment.user.first_name }} - {{comment.content}}
-       </li> 
+        {% for comment in post.comments %}
+       <li>{{ comment.user.first_name }} - {{comment.content}}</li> 
 
           {% endfor %}
       </ul>
+      <form onsubmit="Commentpost( {{post.id}} , document.getElementById('comment{{post.id}}').value);">
+        <div class="input-field">
+            <input id="comment{{post.id}}" type="text" class="validate">
+            <label for="comment{{post.id}}">Comment</label>
+            <button type="submit" class="btn waves-effect">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
+  

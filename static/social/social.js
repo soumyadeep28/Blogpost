@@ -28,3 +28,19 @@ function Likepost(postid) {
         window.location.reload()
     })
 }
+
+function Commentpost(postid ,comment) {
+    const formdata = new FormData()
+    formdata.append('content' , comment)
+    return fetch('/post/'+ postid +'/comment',
+    {
+        method : 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+          },
+        body: formdata
+
+    }).then(() => {
+        window.location.reload()
+    })
+}

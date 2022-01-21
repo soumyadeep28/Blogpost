@@ -34,7 +34,7 @@ class Home(LoginRequiredMixin , ListView):
 
 class Post(View):
   def post(self , request) :
-    form = forms.FormPost(request.POST)
+    form = forms.FormPost(request.POST , request.FILES)
     if form.is_valid():
       print(form)
       post = form.save(commit=False)

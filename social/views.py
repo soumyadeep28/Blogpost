@@ -14,10 +14,15 @@ class Wall(LoginRequiredMixin, ListView):
     login_url = 'auth/login'
 
     def get_queryset(self) :
+      friendids = [ friend.person2.id for friend in models.Friends.objects.filter(person1 = self.request.user)]
+      friendids = friendids + [ friend.person1.id for friend in models.Friends.objects.filter(person2 = self.request.user)]
+      return models.Post.objects.filter(user__in = friendids).order_by('-created_at')
+      '''
         return  models.Post.objects.filter(
           (Q(user__person1 = self.request.user.pk) | Q(user__person2 = self.request.user.pk))
           & ~Q(user = self.request.user)
-            )
+            ).order_by('-created_at')
+      '''
 
 class Home(LoginRequiredMixin , ListView):
     context_object_name = 'posts'
@@ -25,7 +30,7 @@ class Home(LoginRequiredMixin , ListView):
     login_url = 'auth/login'
     def get_queryset(self):
         return models.Post.objects.filter(user = self.request.user.pk
-        )
+        ).order_by('-created_at')
     def get_context_data(self,*args ,  **kwargs):
         data = super().get_context_data(*args , **kwargs)
         data['post_form'] = forms.FormPost()

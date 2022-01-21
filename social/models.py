@@ -10,7 +10,7 @@ class Post(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now= True)
     content = models.TextField()
-    image = models.ImageField() #for image need to install pillow
+    image = models.ImageField(blank = True) #for image need to install pillow
 
     def __str__(self) -> str:
         return '{}_post{}_{}..'.format(self.user , self.pk , self.content[:10])
